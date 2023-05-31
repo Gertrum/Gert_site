@@ -16,9 +16,8 @@
 
 		    </ul>
         	</div>
+	</body>	
 		<script>
-		  modal.style.display = 'block';
-		});
             function sleep(ms) {
                 return new Promise(resolve => setTimeout(resolve, ms));
             }
@@ -33,13 +32,11 @@
                         const newEl = document.createElement("li")
                         newEl.appendChild(document.createTextNode(`${key}: ${value}`))
 			el.appendChild(newEl)
-                        await(5)                        
+                        await(450)                        
                     	}
 		
 		}
                 })()
             }
         </script>
-	</body>
-	
 </html>
