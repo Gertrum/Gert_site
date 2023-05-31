@@ -6,11 +6,40 @@
 	</head>
 	<body>
 		<div class = "container">
-			<img src="fon.jpg" width="1200" height="800" 
+			<img src="fon.jpg" width="1200" height="800" title="Арка на Трубной">
 			<h1>Павлов П.А. и Турченко М.В.</h1>
 			<p> АДБ-21-10</p>
 		</div>
-		<script src="script.js"></script> 
+		<div class="main">
+		    <button class="btn" onclick="myFunction()">Получить данные</button>
+		    <ul id="demo">
+
+		    </ul>
+        	</div>
+		<script>
+		  modal.style.display = 'block';
+		});
+            function sleep(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
+            }
+            function myFunction() {
+                (async () => {
+			while(true) {
+                    let response = await fetch('https://kav-api.kovalev.team/servodrive/lastActualData?servoDriveId=1');
+                    let el = document.getElementById('demo')
+                    el.innerHTML = ""
+                    let text = await response.text(); // прочитать тело ответа как текст
+                    for (const [key, value] of Object.entries(JSON.parse(text)[0])) {
+                        const newEl = document.createElement("li")
+                        newEl.appendChild(document.createTextNode(`${key}: ${value}`))
+			el.appendChild(newEl)
+                        await(5)                        
+                    	}
+		
+		}
+                })()
+            }
+        </script>
 	</body>
 	
 </html>
